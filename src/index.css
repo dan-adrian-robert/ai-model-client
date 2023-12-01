@@ -11,3 +11,64 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.main {
+  height: 100vh;
+  width: 100vw;
+  background-color: #183867;
+}
+
+.chat-container {
+  width: inherit;
+  height: inherit;
+  display: flex;
+  overflow: hidden;
+  position: absolute;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+/*.app-text-box {*/
+/*  background-color: red;*/
+/*  width: 100%;*/
+/*  height: 20%;*/
+/*}*/
+
+.message-container {
+  overflow: hidden;
+  width: 100%;
+  margin-bottom: 8em;
+}
+
+.message-box-container {
+  position: absolute;
+  bottom:1em;
+  width: 100%;
+  height: 5em;
+}
+
+.loader-container {
+  position: absolute;
+  bottom:6em;
+  text-align: center;
+  width: 100%;
+}
+
+.text-box-line {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap:1em;
+}
+
+.message-box {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  overflow: auto;
+}
+
+.chat-input {
+  width: 55vw;
+}
