@@ -1,35 +1,41 @@
-import React, {useCallback, useEffect, useState} from 'react';
+import React, {useCallback, useState} from 'react';
 import './App.css';
 import {MessageList} from "./components/MessageList";
-import {Button, CircularProgress, FormControl, Input, TextField} from "@mui/material";
+import {Button, CircularProgress, TextField} from "@mui/material";
+import {Role, TGPTMessage} from "./types";
 import {sendMessage} from "./services";
-import {mockTest, mockTestMessages} from "./config";
 
 function App() {
 
     const [currentMessage, setCurrentMessage] = useState('');
-    const [messages, setMessages] = useState<Array<any>>([]);
+    const [messages, setMessages] = useState<Array<TGPTMessage>>([]);
     const [loader, setLoader] = useState<boolean>(false);
     const handleSubmit = useCallback(()=> {
         setMessages((prevState) => {
             return [
                 ...prevState,
-            {type:'user', message:currentMessage}
+                {role: Role.user, content:currentMessage}
             ]
         })
         setCurrentMessage('');
         setLoader(true);
-        sendMessage(currentMessage).then((response)=> {
+
+        const payload = [
+            ... messages,
+            {role: Role.user, content:currentMessage},
+        ]
+
+        sendMessage(payload).then((response)=> {
             setMessages((prevState) => {
                 return [
                     ...prevState,
-                    {type:'ai', message:response.data.message.content}
+                    response.data.message
                 ]
             })
             setLoader(false);
         })
 
-    },[currentMessage]);
+    },[currentMessage, messages]);
 
   return (
     <div className="main">

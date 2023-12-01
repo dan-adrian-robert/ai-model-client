@@ -1,6 +1,6 @@
 import axios from 'axios';
+import {TGPTMessage} from "./types";
 
-export const sendMessage = (currentMessage: string): Promise<any> => {
-    console.log(currentMessage);
-    return axios.post('/', {message: currentMessage})
+export const sendMessage = (messages: Array<TGPTMessage>): Promise<any> => {
+    return axios.post('/', {messages})
 }
