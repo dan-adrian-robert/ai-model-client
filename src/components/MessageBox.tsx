@@ -2,7 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import {Avatar, CardContent, Typography} from "@mui/material";
-import {TGPTMessage} from "../types";
+import {Role, TGPTMessage} from "../types";
 import {blue, deepOrange} from '@mui/material/colors';
 import {useCallback} from "react";
 
@@ -16,10 +16,10 @@ export const MessageBox: React.FC<TGPTMessage> = (props) => {
     }, [role]);
 
     return (
-        <Box sx={{ minWidth: '45em' , maxWidth:'45em'}}>
+        <Box sx={{ minWidth: '35em' , maxWidth:'35em', overflow:'auto', minHeight:'7em'}}>
             <Card variant="outlined">
-                <Avatar sx={getStyles()}>{role === 'user'? 'AD':'AI'}</Avatar>
-                <CardContent><Typography sx={{whiteSpace: 'pre-line'}}>{content}</Typography></CardContent>
+                <Avatar sx={getStyles()}>{role === Role.user? 'AD':'AI'}</Avatar>
+                 <CardContent><Typography sx={{whiteSpace: 'pre-line'}}>{content}</Typography></CardContent>
             </Card>
         </Box>
     );

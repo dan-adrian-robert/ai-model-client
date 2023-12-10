@@ -12,3 +12,13 @@ export type TGPTMessage = {
     content: string;
 };
 
+
+export type TGPTChartMessage = {
+    role: GPTRole;
+    content: string | ChartConfig;
+};
+
+export type ChartConfig = {
+    data: any;
+    options: any;
+}
