@@ -73,3 +73,8 @@ code {
 .chat-input {
   width: 55vw;
 }
+
+.chat-input .MuiInputBase-root > input {
+  color: white;
+  border: 2px;
+}

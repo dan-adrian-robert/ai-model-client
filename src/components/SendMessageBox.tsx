@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useCallback, useEffect, useState} from 'react';
 import '../App.css';
 import {Button, TextField} from "@mui/material";
 
@@ -8,6 +8,20 @@ interface IProps {
 
 export const SendMessageBox: React.FC<IProps> = ({onSubmit}) => {
     const [currentMessage, setCurrentMessage] = useState('');
+
+    useEffect(() => {
+        window.addEventListener('keydown', handleKeyPress);
+
+        return () => {
+            window.removeEventListener('keydown', handleKeyPress);
+        };
+    }, [])
+
+    const handleKeyPress = useCallback((event: any)=> {
+        if (event.key === 'Enter') {
+            onSubmit(currentMessage);
+        }
+    }, [])
 
     return (
         <div className='message-box-container'>
